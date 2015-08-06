@@ -14,6 +14,7 @@
 		364154391B6A4B65008E6DF3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 364154371B6A4B65008E6DF3 /* LaunchScreen.xib */; };
 		364154451B6A4B65008E6DF3 /* RendaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364154441B6A4B65008E6DF3 /* RendaTests.swift */; };
 		36F9241C1B7176AD008CED93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364154301B6A4B65008E6DF3 /* ViewController.swift */; };
+		36F9241E1B739218008CED93 /* Renda.gif in Resources */ = {isa = PBXBuildFile; fileRef = 36F9241D1B739218008CED93 /* Renda.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		3641543E1B6A4B65008E6DF3 /* RendaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RendaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		364154431B6A4B65008E6DF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		364154441B6A4B65008E6DF3 /* RendaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RendaTests.swift; sourceTree = "<group>"; };
+		36F9241D1B739218008CED93 /* Renda.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Renda.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 		364154421B6A4B65008E6DF3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				36F9241D1B739218008CED93 /* Renda.gif */,
 				364154431B6A4B65008E6DF3 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -203,6 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36F9241E1B739218008CED93 /* Renda.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
