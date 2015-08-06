@@ -13,6 +13,7 @@
 		364154361B6A4B65008E6DF3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 364154351B6A4B65008E6DF3 /* Images.xcassets */; };
 		364154391B6A4B65008E6DF3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 364154371B6A4B65008E6DF3 /* LaunchScreen.xib */; };
 		364154451B6A4B65008E6DF3 /* RendaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364154441B6A4B65008E6DF3 /* RendaTests.swift */; };
+		36F9241C1B7176AD008CED93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364154301B6A4B65008E6DF3 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36F9241C1B7176AD008CED93 /* ViewController.swift in Sources */,
 				364154451B6A4B65008E6DF3 /* RendaTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,6 +411,7 @@
 				3641544A1B6A4B65008E6DF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3641544B1B6A4B65008E6DF3 /* Build configuration list for PBXNativeTarget "RendaTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +420,7 @@
 				3641544D1B6A4B65008E6DF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
