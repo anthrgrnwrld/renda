@@ -16,21 +16,37 @@ class ViewController: UIViewController {
     var countPushing = 0
     var countupTimer = 0
     var timer = NSTimer()
+    let ud = NSUserDefaults.standardUserDefaults()
     var timerState = false
-    var startState = true
+    var startState = false
+    var highScore = 0
+    let udKey = "HIGHSCORE"
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateCounter([0,0,0,0])    //カウンタを初期表示にアップデート
-        updateTimerLabel(10)        //タイマーの初期表示をアップデート
+        highScore = ud.integerForKey(udKey)     //保存済みのハイスコアを取得
+        println("highScore is \(highScore)")
+        
+        let highScoreAfterEdit = editCount(highScore, digitNum: counterDigit.count)
+        updateCounter(highScoreAfterEdit)       //カウンタを初期表示にアップデート
+        updateTimerLabel(0)                     //タイマーの初期表示をアップデート
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func buttonStart(sender: AnyObject) {
+        
+        startState = true           //startStateがtrueの時にはゲーム開始できる
+        
+        updateCounter([0,0,0,0])    //カウンタを初期表示にアップデート
+        updateTimerLabel(10)        //タイマーの初期表示をアップデート
+        
     }
 
     @IBAction func buttonA(sender: AnyObject) {
@@ -50,9 +66,9 @@ class ViewController: UIViewController {
     ボタンA及びBを押した時に実行する関数
     */
     func pressButtonFunc() {
-
+        
         //println("\(__FUNCTION__) is called")
-
+        
         //timerStateがfalseの時にはTimerをスタート。trueの時には無視する。
         if timerState == false && startState {
             timerState = true
@@ -67,7 +83,7 @@ class ViewController: UIViewController {
             updateCounter(countAfterEdit)   //カウンタをアップデートする
             
         }
-
+        
         
     }
     
@@ -80,7 +96,7 @@ class ViewController: UIViewController {
     :returns: digitArray:変換結果を入れる配列
     */
     func editCount(var count :Int, digitNum :Int) -> [Int] {
- 
+        
         var digitArray = [Int]()
         
         for index in 0 ... (digitNum) {
@@ -88,7 +104,7 @@ class ViewController: UIViewController {
             if index != 0 {digitArray.append(count / Int(tmpDec))}
             count = count % Int(tmpDec)
         }
-    
+        
         return digitArray
     }
     
@@ -110,27 +126,37 @@ class ViewController: UIViewController {
         }
         
     }
-
+    
     /**
     タイマー関数。1秒毎に呼び出される。
     */
     func updateTimer() {
         println("\(__FUNCTION__) is called")
-
+        
         countupTimer++                                      //countupTimerをインクリメント
         let countdownTimer = editTimerCount(countupTimer)   //カウントアップ表記をカウントダウン表記へ変換
         updateTimerLabel(countdownTimer)                    //タイマー表示ラベルをアップデート
         
-        if countdownTimer <= 0 {
-            timerState = false
-            startState = false
-            countupTimer = 0
-            timer.invalidate()
-        }
+        if countdownTimer <= 0 {timeupFunc()}               //ゲーム開始より10秒経過後、ゲーム完了処理を実行
         
         println("\(countupTimer)")
     }
-
+    
+    /**
+    ゲーム完了時に実行する関数。
+    */
+    func timeupFunc() {
+        highScore = countPushing > highScore ? countPushing : highScore
+        timerState = false
+        startState = false
+        countupTimer = 0
+        countPushing = 0
+        timer.invalidate()
+        println("highScore is \(highScore)")
+        ud.setInteger(highScore, forKey: udKey)     //ハイスコアをNSUserDefaultsのインスタンスに保存
+        ud.synchronize()                            //保存する情報の繁栄
+    }
+    
     /**
     カウントアップタイマーを1カウントダウン表記(Start 10)に変更する。
     timerCount > 10 の場合には0をReturnする
@@ -142,11 +168,8 @@ class ViewController: UIViewController {
         
         var timerCountAfterEdit: Int?
         
-        if 10 >= timerCount {
-            timerCountAfterEdit = 10 - timerCount
-        } else {
-            timerCountAfterEdit = 0
-        }
+        if 10 >= timerCount {timerCountAfterEdit = 10 - timerCount}
+        else {timerCountAfterEdit = 0}
         
         return timerCountAfterEdit!
         
