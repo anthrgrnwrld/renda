@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import GameKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, GKGameCenterControllerDelegate {
     
     @IBOutlet var counterDigit: [UILabel]!
     @IBOutlet var decimalPlace: [UILabel]!
@@ -17,12 +18,11 @@ class ViewController: UIViewController {
     var countupTimer = 0
     var timer = NSTimer()
     let ud = NSUserDefaults.standardUserDefaults()
-    var timerState = false
-    var startState = false
+    var timerState = false  //timerStateがfalseの時にはTimerをスタート。trueの時には無視する。
+    var startState = false  //startStateがtrueの時にはゲーム開始できる
     var highScore = 0
     let udKey = "HIGHSCORE"
-    
-    
+    let leaderboardid = "renda.highscore"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +30,12 @@ class ViewController: UIViewController {
         highScore = ud.integerForKey(udKey)     //保存済みのハイスコアを取得
         println("highScore is \(highScore)")
         
-        let highScoreAfterEdit = editCount(highScore, digitNum: counterDigit.count)
+        let tmpNum = counterDigit != nil ? counterDigit.count : 0
+        
+        let highScoreAfterEdit = editCount(highScore, digitNum: tmpNum)
         updateCounter(highScoreAfterEdit)       //カウンタを初期表示にアップデート
         updateTimerLabel(0)                     //タイマーの初期表示をアップデート
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,21 +43,34 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    /**
+    Startボタンを押した時に実行する関数
+    */
     @IBAction func buttonStart(sender: AnyObject) {
         
-        startState = true           //startStateがtrueの時にはゲーム開始できる
+        if startState != false {    //starStateがtrueの時には処理を終了
+            return
+        }
         
+        startState = true           //startStateがtrueにし、Gameが開始できる状態にする
         updateCounter([0,0,0,0])    //カウンタを初期表示にアップデート
         updateTimerLabel(10)        //タイマーの初期表示をアップデート
         
     }
 
+    /**
+    Aボタンを押した時に実行する関数
+    */
     @IBAction func buttonA(sender: AnyObject) {
         
         pressButtonFunc()
         
     }
 
+    /**
+    Bボタンを押した時に実行する関数
+    */
     @IBAction func buttonB(sender: AnyObject) {
 
         pressButtonFunc()
@@ -63,7 +79,7 @@ class ViewController: UIViewController {
 
     
     /**
-    ボタンA及びBを押した時に実行する関数
+    Aボタン及びBボタンを押した時に実行する関数
     */
     func pressButtonFunc() {
         
@@ -78,8 +94,10 @@ class ViewController: UIViewController {
         if timerState && startState {
             
             countPushing++  //countPushingをインクリメント
+ 
+            let tmpNum = counterDigit != nil ? counterDigit.count : 0
             
-            let countAfterEdit = editCount(countPushing, digitNum: counterDigit.count)  //カウントを表示用にEdit
+            let countAfterEdit = editCount(countPushing, digitNum: tmpNum)  //カウントを表示用にEdit
             updateCounter(countAfterEdit)   //カウンタをアップデートする
             
         }
@@ -116,13 +134,19 @@ class ViewController: UIViewController {
     */
     func updateCounter(countArray :[Int]) {
         
-        if countArray.count == counterDigit.count {
+        if counterDigit != nil && countArray.count == counterDigit.count {
             
             for index in 0 ... (countArray.count - 1) {counterDigit[index].text = "\(countArray[index])"}
             
-        } else {
+        } else if counterDigit != nil && countArray.count != counterDigit.count {
+            
             for index in 0 ... (countArray.count - 1) {counterDigit[index].text = "E"}
             println("Error")
+            
+        } else {    //counterDigit == nil
+            
+            //Do nothing
+            
         }
         
     }
@@ -131,7 +155,7 @@ class ViewController: UIViewController {
     タイマー関数。1秒毎に呼び出される。
     */
     func updateTimer() {
-        println("\(__FUNCTION__) is called")
+        //println("\(__FUNCTION__) is called")
         
         countupTimer++                                      //countupTimerをインクリメント
         let countdownTimer = editTimerCount(countupTimer)   //カウントアップ表記をカウントダウン表記へ変換
@@ -139,7 +163,7 @@ class ViewController: UIViewController {
         
         if countdownTimer <= 0 {timeupFunc()}               //ゲーム開始より10秒経過後、ゲーム完了処理を実行
         
-        println("\(countupTimer)")
+        println("\(__FUNCTION__) is called! \(countupTimer)")
     }
     
     /**
@@ -154,7 +178,8 @@ class ViewController: UIViewController {
         timer.invalidate()
         println("highScore is \(highScore)")
         ud.setInteger(highScore, forKey: udKey)     //ハイスコアをNSUserDefaultsのインスタンスに保存
-        ud.synchronize()                            //保存する情報の繁栄
+        ud.synchronize()                            //保存する情報の反映
+        GKScoreUtil.reportScores(highScore, leaderboardid: leaderboardid)   //GameCenter Score Transration
     }
     
     /**
@@ -181,13 +206,51 @@ class ViewController: UIViewController {
     :param: countArray:配列に編集済みのカウント配列*要editCount
     */
     func updateTimerLabel(timerCount: Int) {
-        
-        decimalPlace[0].text = "\(timerCount/10)"
-        decimalPlace[1].text = "\(timerCount%10)"
+ 
+        if decimalPlace != nil {
+
+            decimalPlace[0].text = "\(timerCount/10)"
+            decimalPlace[1].text = "\(timerCount%10)"
+
+        }
         
     }
-   
+
+    /**
+    GameCenterボタンを押した時に実行する関数
+    */
+    @IBAction func pressGameCenter(sender: AnyObject) {
+        showLeaderboardScore()
+    }
     
+    /**
+    GKScoreにてスコアが送信されたデータスコアをLeaderboardで確認する
+    */
+    func showLeaderboardScore() {
+        var localPlayer = GKLocalPlayer()
+        localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifier : String!, error : NSError!) -> Void in
+            if error != nil {
+                println(error.localizedDescription)
+            } else {
+                let gameCenterController:GKGameCenterViewController = GKGameCenterViewController()
+                gameCenterController.gameCenterDelegate = self  //このViewControllerにはGameCenterControllerDelegateが実装されている必要があります
+                gameCenterController.viewState = GKGameCenterViewControllerState.Leaderboards
+                gameCenterController.leaderboardIdentifier = self.leaderboardid //該当するLeaderboardのIDを指定します
+                self.presentViewController(gameCenterController, animated: true, completion: nil);
+            }
+        })
+        
+    }
+    
+    /**
+    Leaderboardを"DONE"押下後にCloseする
+    */
+    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
+        println("\(__FUNCTION__) is called")
+        //code to dismiss your gameCenterViewController
+        gameCenterViewController.dismissViewControllerAnimated(true, completion: nil);
+    }
+
     
 
 }

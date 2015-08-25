@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36112ADC1B75744F00612489 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36112ADB1B75744F00612489 /* GameKit.framework */; };
+		36112AE11B78E46600612489 /* RendaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364154441B6A4B65008E6DF3 /* RendaTests.swift */; };
+		36112AE31B7A311200612489 /* GKLocalPlayerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36112AE21B7A311200612489 /* GKLocalPlayerUtil.swift */; };
 		3641542F1B6A4B65008E6DF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641542E1B6A4B65008E6DF3 /* AppDelegate.swift */; };
 		364154311B6A4B65008E6DF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364154301B6A4B65008E6DF3 /* ViewController.swift */; };
 		364154341B6A4B65008E6DF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 364154321B6A4B65008E6DF3 /* Main.storyboard */; };
 		364154361B6A4B65008E6DF3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 364154351B6A4B65008E6DF3 /* Images.xcassets */; };
 		364154391B6A4B65008E6DF3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 364154371B6A4B65008E6DF3 /* LaunchScreen.xib */; };
-		364154451B6A4B65008E6DF3 /* RendaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364154441B6A4B65008E6DF3 /* RendaTests.swift */; };
-		36F9241C1B7176AD008CED93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364154301B6A4B65008E6DF3 /* ViewController.swift */; };
+		36E4E74F1B8346E10045E3C7 /* GKScoreUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4E74D1B8206D50045E3C7 /* GKScoreUtil.swift */; };
+		36E4E7831B84A6630045E3C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364154301B6A4B65008E6DF3 /* ViewController.swift */; };
+		36E4E7851B84A8E10045E3C7 /* GKScoreUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4E74D1B8206D50045E3C7 /* GKScoreUtil.swift */; };
 		36F9241E1B739218008CED93 /* Renda.gif in Resources */ = {isa = PBXBuildFile; fileRef = 36F9241D1B739218008CED93 /* Renda.gif */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		36112ADB1B75744F00612489 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		36112AE21B7A311200612489 /* GKLocalPlayerUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKLocalPlayerUtil.swift; sourceTree = "<group>"; };
 		364154291B6A4B65008E6DF3 /* Renda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Renda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3641542D1B6A4B65008E6DF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3641542E1B6A4B65008E6DF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +44,7 @@
 		3641543E1B6A4B65008E6DF3 /* RendaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RendaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		364154431B6A4B65008E6DF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		364154441B6A4B65008E6DF3 /* RendaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RendaTests.swift; sourceTree = "<group>"; };
+		36E4E74D1B8206D50045E3C7 /* GKScoreUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKScoreUtil.swift; sourceTree = "<group>"; };
 		36F9241D1B739218008CED93 /* Renda.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Renda.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -46,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36112ADC1B75744F00612489 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +70,7 @@
 		364154201B6A4B65008E6DF3 = {
 			isa = PBXGroup;
 			children = (
+				36112ADB1B75744F00612489 /* GameKit.framework */,
 				3641542B1B6A4B65008E6DF3 /* Renda */,
 				364154411B6A4B65008E6DF3 /* RendaTests */,
 				3641542A1B6A4B65008E6DF3 /* Products */,
@@ -82,6 +91,8 @@
 			children = (
 				3641542E1B6A4B65008E6DF3 /* AppDelegate.swift */,
 				364154301B6A4B65008E6DF3 /* ViewController.swift */,
+				36112AE21B7A311200612489 /* GKLocalPlayerUtil.swift */,
+				36E4E74D1B8206D50045E3C7 /* GKScoreUtil.swift */,
 				364154321B6A4B65008E6DF3 /* Main.storyboard */,
 				364154351B6A4B65008E6DF3 /* Images.xcassets */,
 				364154371B6A4B65008E6DF3 /* LaunchScreen.xib */,
@@ -165,6 +176,7 @@
 				TargetAttributes = {
 					364154281B6A4B65008E6DF3 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = WBV73EJ8V2;
 					};
 					3641543D1B6A4B65008E6DF3 = {
 						CreatedOnToolsVersion = 6.4;
@@ -217,7 +229,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36E4E74F1B8346E10045E3C7 /* GKScoreUtil.swift in Sources */,
 				364154311B6A4B65008E6DF3 /* ViewController.swift in Sources */,
+				36112AE31B7A311200612489 /* GKLocalPlayerUtil.swift in Sources */,
 				3641542F1B6A4B65008E6DF3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,8 +240,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36F9241C1B7176AD008CED93 /* ViewController.swift in Sources */,
-				364154451B6A4B65008E6DF3 /* RendaTests.swift in Sources */,
+				36E4E7851B84A8E10045E3C7 /* GKScoreUtil.swift in Sources */,
+				36E4E7831B84A6630045E3C7 /* ViewController.swift in Sources */,
+				36112AE11B78E46600612489 /* RendaTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,9 +361,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Renda/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -356,9 +374,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Renda/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

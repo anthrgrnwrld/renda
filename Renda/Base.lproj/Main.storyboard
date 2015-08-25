@@ -27,37 +27,37 @@
                                             <constraint firstAttribute="width" secondItem="hmC-25-7Qk" secondAttribute="height" multiplier="42:95" id="UcG-WH-j56"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="48"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gr8-Pz-U6l">
                                         <rect key="frame" x="118" y="0.0" width="42" height="95"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="48"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jR-ru-5Iq">
                                         <rect key="frame" x="178" y="0.0" width="42" height="95"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="48"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSY-EG-J3T">
                                         <rect key="frame" x="220" y="0.0" width="42" height="95"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="48"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYa-g2-fa2">
                                         <rect key="frame" x="301" y="24" width="21" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mK6-dP-7XZ">
                                         <rect key="frame" x="280" y="24" width="21" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -143,10 +143,20 @@
                                     <action selector="buttonStart:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="KT8-8Q-dJh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yG7-HZ-AUh">
+                                <rect key="frame" x="263" y="617" width="92" height="30"/>
+                                <state key="normal" title="Game Center">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressGameCenter:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="udg-J9-DtM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="LBz-C9-LU3" secondAttribute="centerY" multiplier="0.75" id="2w2-qO-JML"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="yG7-HZ-AUh" secondAttribute="bottom" constant="20" id="4Yd-eB-Fge"/>
                             <constraint firstAttribute="centerY" secondItem="Ywe-P2-SaR" secondAttribute="centerY" multiplier="1.5" id="6VS-8u-uEA"/>
                             <constraint firstItem="BUd-FH-oxT" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.2" id="A34-8o-Bod"/>
                             <constraint firstAttribute="centerX" secondItem="Ari-6U-y1t" secondAttribute="centerX" id="Dk4-ml-VJo"/>
@@ -154,6 +164,7 @@
                             <constraint firstAttribute="centerX" secondItem="Ywe-P2-SaR" secondAttribute="centerX" id="Ltq-pM-rgE"/>
                             <constraint firstItem="Ari-6U-y1t" firstAttribute="width" secondItem="eKG-rp-bYs" secondAttribute="width" id="RZn-ZW-FzV"/>
                             <constraint firstAttribute="centerX" secondItem="LBz-C9-LU3" secondAttribute="centerX" id="TTV-u1-Pyd"/>
+                            <constraint firstAttribute="trailing" secondItem="yG7-HZ-AUh" secondAttribute="trailing" constant="20" id="VRJ-yU-04G"/>
                             <constraint firstAttribute="centerY" secondItem="Ari-6U-y1t" secondAttribute="centerY" id="VhN-LM-9yC"/>
                             <constraint firstItem="Ywe-P2-SaR" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.9" id="djk-yK-XSc"/>
                         </constraints>
