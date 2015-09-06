@@ -103,7 +103,7 @@
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="buttonB:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Myl-iY-ETs"/>
+                                            <action selector="pressButtonB:" destination="vXZ-lx-hvc" eventType="touchDown" id="VTT-gc-yZz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKG-rp-bYs">
@@ -114,7 +114,7 @@
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="buttonA:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="5Mn-4Q-kff"/>
+                                            <action selector="pressButtonA:" destination="vXZ-lx-hvc" eventType="touchDown" id="WgZ-ze-AA2"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -152,25 +152,75 @@
                                     <action selector="pressGameCenter:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="udg-J9-DtM"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oki-sL-b3R">
+                                <rect key="frame" x="18" y="137" width="338" height="38"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sRV-c3-Esw">
+                                        <rect key="frame" x="300" y="0.0" width="38" height="38"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="sRV-c3-Esw" secondAttribute="height" multiplier="1:1" id="0QY-MI-YF5"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0c-bk-JFs">
+                                        <rect key="frame" x="0.0" y="0.0" width="38" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="C0c-bk-JFs" secondAttribute="height" multiplier="1:1" id="umQ-hj-eTN"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdk-nD-kkN">
+                                        <rect key="frame" x="300" y="0.0" width="38" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="qdk-nD-kkN" secondAttribute="height" multiplier="1:1" id="FFd-em-DwC"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="C0c-bk-JFs" firstAttribute="leading" secondItem="Oki-sL-b3R" secondAttribute="leading" id="7sO-0Y-m73"/>
+                                    <constraint firstItem="sRV-c3-Esw" firstAttribute="height" secondItem="Oki-sL-b3R" secondAttribute="height" id="9eJ-ta-NXc"/>
+                                    <constraint firstItem="C0c-bk-JFs" firstAttribute="height" secondItem="Oki-sL-b3R" secondAttribute="height" id="Ksa-pi-dFP"/>
+                                    <constraint firstAttribute="centerY" secondItem="C0c-bk-JFs" secondAttribute="centerY" id="PCB-yk-ACF"/>
+                                    <constraint firstAttribute="trailing" secondItem="sRV-c3-Esw" secondAttribute="trailing" id="Tjo-d2-tHa"/>
+                                    <constraint firstItem="qdk-nD-kkN" firstAttribute="height" secondItem="Oki-sL-b3R" secondAttribute="height" id="WgA-S1-Bff"/>
+                                    <constraint firstAttribute="trailing" secondItem="qdk-nD-kkN" secondAttribute="trailing" id="b5a-1Y-YLU"/>
+                                    <constraint firstItem="sRV-c3-Esw" firstAttribute="leading" secondItem="qdk-nD-kkN" secondAttribute="trailing" id="fH9-2t-9ez"/>
+                                    <constraint firstAttribute="centerY" secondItem="qdk-nD-kkN" secondAttribute="centerY" id="iNx-h8-pGr"/>
+                                    <constraint firstAttribute="centerY" secondItem="sRV-c3-Esw" secondAttribute="centerY" id="uTN-OZ-0di"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="fH9-2t-9ez"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Oki-sL-b3R" secondAttribute="centerX" id="0Wg-lt-DUX"/>
                             <constraint firstAttribute="centerY" secondItem="LBz-C9-LU3" secondAttribute="centerY" multiplier="0.75" id="2w2-qO-JML"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="yG7-HZ-AUh" secondAttribute="bottom" constant="20" id="4Yd-eB-Fge"/>
                             <constraint firstAttribute="centerY" secondItem="Ywe-P2-SaR" secondAttribute="centerY" multiplier="1.5" id="6VS-8u-uEA"/>
                             <constraint firstItem="BUd-FH-oxT" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.2" id="A34-8o-Bod"/>
                             <constraint firstAttribute="centerX" secondItem="Ari-6U-y1t" secondAttribute="centerX" id="Dk4-ml-VJo"/>
                             <constraint firstItem="LBz-C9-LU3" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="GwL-Xt-dwK"/>
+                            <constraint firstItem="Ywe-P2-SaR" firstAttribute="width" secondItem="Oki-sL-b3R" secondAttribute="width" id="Lqs-t1-EqB"/>
                             <constraint firstAttribute="centerX" secondItem="Ywe-P2-SaR" secondAttribute="centerX" id="Ltq-pM-rgE"/>
                             <constraint firstItem="Ari-6U-y1t" firstAttribute="width" secondItem="eKG-rp-bYs" secondAttribute="width" id="RZn-ZW-FzV"/>
                             <constraint firstAttribute="centerX" secondItem="LBz-C9-LU3" secondAttribute="centerX" id="TTV-u1-Pyd"/>
                             <constraint firstAttribute="trailing" secondItem="yG7-HZ-AUh" secondAttribute="trailing" constant="20" id="VRJ-yU-04G"/>
                             <constraint firstAttribute="centerY" secondItem="Ari-6U-y1t" secondAttribute="centerY" id="VhN-LM-9yC"/>
                             <constraint firstItem="Ywe-P2-SaR" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.9" id="djk-yK-XSc"/>
+                            <constraint firstItem="Ywe-P2-SaR" firstAttribute="top" secondItem="Oki-sL-b3R" secondAttribute="bottom" id="hjF-Jp-yfe"/>
+                            <constraint firstItem="Oki-sL-b3R" firstAttribute="height" secondItem="Ywe-P2-SaR" secondAttribute="height" multiplier="0.4" id="zyR-rV-YBG"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="buttonA" destination="eKG-rp-bYs" id="E9B-GN-uuj"/>
+                        <outlet property="buttonB" destination="BUd-FH-oxT" id="5Tl-zq-bQx"/>
+                        <outlet property="imageBee" destination="sRV-c3-Esw" id="RYb-hR-ICC"/>
+                        <outlet property="positionBeeMostLeft" destination="C0c-bk-JFs" id="7ff-UB-1Am"/>
+                        <outlet property="positionBeeMostRight" destination="qdk-nD-kkN" id="dIm-8T-W8R"/>
                         <outletCollection property="counterDigit" destination="hmC-25-7Qk" collectionClass="NSMutableArray" id="h9i-vD-ktz"/>
                         <outletCollection property="counterDigit" destination="gr8-Pz-U6l" collectionClass="NSMutableArray" id="TLl-6l-ajL"/>
                         <outletCollection property="counterDigit" destination="3jR-ru-5Iq" collectionClass="NSMutableArray" id="bR7-69-MAH"/>
@@ -180,6 +230,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="oQD-Zi-Aqn"/>
             </objects>
             <point key="canvasLocation" x="377.5" y="463.5"/>
         </scene>

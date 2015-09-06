@@ -9,10 +9,20 @@
 import UIKit
 import GameKit
 
-class ViewController: UIViewController, GKGameCenterControllerDelegate {
+class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBannerViewDelegate {
     
     @IBOutlet var counterDigit: [UILabel]!
     @IBOutlet var decimalPlace: [UILabel]!
+    @IBOutlet weak var positionBeeMostLeft: UIView!
+    @IBOutlet weak var positionBeeMostRight: UIView!
+    @IBOutlet weak var imageBee: UIImageView!
+    @IBOutlet weak var buttonA: UIButton!
+    @IBOutlet weak var buttonB: UIButton!
+    
+    let YOUR_ID = "ca-app-pub-3530000000000000/0123456789"  // Enter Ad's ID here
+    let TEST_DEVICE_ID = "61b0154xxxxxxxxxxxxxxxxxxxxxxxe0" // Enter Test ID here
+    let AdMobTest:Bool = true
+    let SimulatorTest:Bool = true
     
     var countPushing = 0
     var countupTimer = 0
@@ -23,6 +33,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
     var highScore = 0
     let udKey = "HIGHSCORE"
     let leaderboardid = "renda.highscore"
+    var kosuri:KosuriGestureRecognizer? = nil   //コスリクラスのインスタンス
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +46,57 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
         let highScoreAfterEdit = editCount(highScore, digitNum: tmpNum)
         updateCounter(highScoreAfterEdit)       //カウンタを初期表示にアップデート
         updateTimerLabel(0)                     //タイマーの初期表示をアップデート
-
+        
+        let bannerView:GADBannerView = getAdBannerView()
+        self.view.addSubview(bannerView)
+        
+        self.kosuri = KosuriGestureRecognizer(_targetViewA: self.buttonA, _targetViewB: self.buttonB, didPush: {
+            self.pressButtonFunc()
+        })
+        
+    }
+    
+    private func getAdBannerView() -> GADBannerView {
+        var bannerView: GADBannerView = GADBannerView()
+        bannerView = GADBannerView(adSize:kGADAdSizeBanner)
+        bannerView.frame.origin = CGPointMake(0, 20)
+        bannerView.frame.size = CGSizeMake(self.view.frame.width, bannerView.frame.height)
+        bannerView.adUnitID = "\(YOUR_ID)"
+        bannerView.delegate = self
+        bannerView.rootViewController = self
+        
+        var request:GADRequest = GADRequest()
+        
+        if AdMobTest {
+            if SimulatorTest {
+                request.testDevices = [kGADSimulatorID]
+            } else {
+                request.testDevices = [TEST_DEVICE_ID]
+            }
+        }
+        
+        bannerView.loadRequest(request)
+        
+        return bannerView
+    }
+    
+    func adViewDidReceiveAd(adView: GADBannerView){
+        println("adViewDidReceiveAd:\(adView)")
+    }
+    func adView(adView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError){
+        println("error:\(error)")
+    }
+    func adViewWillPresentScreen(adView: GADBannerView){
+        println("adViewWillPresentScreen")
+    }
+    func adViewWillDismissScreen(adView: GADBannerView){
+        println("adViewWillDismissScreen")
+    }
+    func adViewDidDismissScreen(adView: GADBannerView){
+        println("adViewDidDismissScreen")
+    }
+    func adViewWillLeaveApplication(adView: GADBannerView){
+        println("adViewWillLeaveApplication")
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,15 +115,24 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
         }
         
         startState = true           //startStateがtrueにし、Gameが開始できる状態にする
+        countPushing = 0
+        countupTimer = 0
         updateCounter([0,0,0,0])    //カウンタを初期表示にアップデート
         updateTimerLabel(10)        //タイマーの初期表示をアップデート
+        imageBee.center = positionBeeMostRight.center   //imageBeeの表示位置を初期値に戻す
+
+        //Viewの点滅を終了する。
+        finishBlinkAnimationWithView(imageBee)
+        for (index, view) in enumerate(self.counterDigit) {
+            finishBlinkAnimationWithView(view)
+        }
         
     }
 
     /**
     Aボタンを押した時に実行する関数
     */
-    @IBAction func buttonA(sender: AnyObject) {
+    @IBAction func pressButtonA(sender: AnyObject) {
         
         pressButtonFunc()
         
@@ -71,7 +141,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
     /**
     Bボタンを押した時に実行する関数
     */
-    @IBAction func buttonB(sender: AnyObject) {
+    @IBAction func pressButtonB(sender: AnyObject) {
 
         pressButtonFunc()
         
@@ -99,6 +169,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
             
             let countAfterEdit = editCount(countPushing, digitNum: tmpNum)  //カウントを表示用にEdit
             updateCounter(countAfterEdit)   //カウンタをアップデートする
+            moveImageBeeWithCountPushing(countPushing)  //imageBeeの表示位置をアップデートする
             
         }
         
@@ -170,16 +241,50 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
     ゲーム完了時に実行する関数。
     */
     func timeupFunc() {
+
+        let highScoreFlag = countPushing > highScore ? true : false
         highScore = countPushing > highScore ? countPushing : highScore
         timerState = false
         startState = false
-        countupTimer = 0
-        countPushing = 0
         timer.invalidate()
         println("highScore is \(highScore)")
         ud.setInteger(highScore, forKey: udKey)     //ハイスコアをNSUserDefaultsのインスタンスに保存
         ud.synchronize()                            //保存する情報の反映
         GKScoreUtil.reportScores(highScore, leaderboardid: leaderboardid)   //GameCenter Score Transration
+        
+        //ハイスコア更新の場合にはimageBeeとカウンタ表示を点滅させる
+        if highScoreFlag {
+            blinkAnimationWithView(imageBee)
+            for (index, view) in enumerate(self.counterDigit) {
+                blinkAnimationWithView(view)
+            }
+        }
+        
+        
+
+    }
+ 
+    /**
+    指定されたViewを1秒間隔で点滅させる
+    
+    :param: view:点滅させるView
+    */
+    func blinkAnimationWithView(view :UIView) {
+        UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.Repeat, animations: { () -> Void in
+            view.alpha = 0.0
+            }, completion: nil)
+    }
+    
+    /**
+    指定されたViewの点滅アニメーションを終了する
+    
+    :param: view:点滅を終了するView
+    */
+    func finishBlinkAnimationWithView(view :UIView) {
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.animateWithDuration(0.001, animations: {
+            view.alpha = 1.0
+        })
     }
     
     /**
@@ -249,6 +354,20 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate {
         println("\(__FUNCTION__) is called")
         //code to dismiss your gameCenterViewController
         gameCenterViewController.dismissViewControllerAnimated(true, completion: nil);
+    }
+    
+    /**
+    imageBeeの表示位置を変更する。
+    
+    :param: countPushing:Pushカウント数
+    */
+    func moveImageBeeWithCountPushing(countPushing: Int) {
+        println("countPushing is \(countPushing)")
+        
+        let deltaXperOnePushing = (positionBeeMostRight.center.x - positionBeeMostLeft.center.x)/100    //1Push当たりのx移動量
+        if (countPushing - 1) % 100 == 0 {imageBee.center.x = positionBeeMostRight.center.x}            //100回毎にpositionBeeMostLeftに位置を戻す
+        imageBee.center.x -= deltaXperOnePushing                                                        //imageBeeの表示位置を移動する
+        
     }
 
     
